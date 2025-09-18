@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://kefslv2vre25"]
+
+[ext_resource type="Script" uid="uid://cfx45lnqmcqbw" path="res://skills/move.gd" id="1_7u157"]
+[ext_resource type="Texture2D" uid="uid://4m2xewu7xnwf" path="res://sprites/move.png" id="2_gpfvn"]
+
+[node name="Move" type="Node"]
+script = ExtResource("1_7u157")
+icon = ExtResource("2_gpfvn")
+description = "user moves to the target position"
+stats = {
+&"max_distance": 64,
+&"turn_cost": 5
+}

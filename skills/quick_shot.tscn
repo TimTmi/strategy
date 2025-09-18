@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://pxm2fypburi5"]
+
+[ext_resource type="Script" uid="uid://dij4bxloykwne" path="res://skills/quick_shot.gd" id="1_vjlmf"]
+[ext_resource type="Texture2D" uid="uid://dpbyh7wig75aq" path="res://sprites/arrowhead.png" id="2_7kkt6"]
+[ext_resource type="Resource" uid="uid://dtpucj3k3e8pi" path="res://physics_layer_controller.tres" id="2_eixq2"]
+
+[node name="QuickShot" type="Node"]
+script = ExtResource("1_vjlmf")
+physics_layer_controller = ExtResource("2_eixq2")
+icon = ExtResource("2_7kkt6")
+description = "user shoots a quick arrow at the target angle"
+stats = {
+&"damage": 1.0,
+&"turn_cost": 5
+}

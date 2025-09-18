@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://djmiyg1541km8"]
+
+[ext_resource type="Script" uid="uid://b643hhvc7g6fi" path="res://ui_elements/autohide_component.gd" id="2_xg3ow"]
+
+[node name="AutoHideComponent" type="Node"]
+script = ExtResource("2_xg3ow")

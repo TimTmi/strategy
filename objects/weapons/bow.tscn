@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://ccimmjhg8bubo"]
+
+[ext_resource type="Script" uid="uid://cf5ashms822pm" path="res://objects/weapons/bow.gd" id="1_rdv30"]
+[ext_resource type="Texture2D" uid="uid://c653653tuxate" path="res://sprites/0x72_DungeonTilesetII_v1.7/weapons.png" id="1_yhkeu"]
+
+[node name="Bow" type="Node2D"]
+script = ExtResource("1_rdv30")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_yhkeu")
+region_enabled = true
+region_rect = Rect2(216, 35, 7, 26)
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(-1, -10, -2, -9, -2, 0, -2, 9, -1, 10)
+width = 1.0
+default_color = Color(0.827451, 0.74902, 0.662745, 1)

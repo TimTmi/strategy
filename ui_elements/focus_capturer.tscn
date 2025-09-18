@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://bova3ex1g8u22"]
+
+[ext_resource type="StyleBox" uid="uid://dd5jcqh8o58mj" path="res://styleboxes/empty.tres" id="1_kplbl"]
+
+[node name="FocusCapturer" type="Button"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = ExtResource("1_kplbl")
+theme_override_styles/hover = ExtResource("1_kplbl")
+theme_override_styles/pressed = ExtResource("1_kplbl")
+theme_override_styles/disabled = ExtResource("1_kplbl")
+theme_override_styles/focus = ExtResource("1_kplbl")

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cg2783fnr10ag"]
+
+[ext_resource type="Script" uid="uid://vwsdn52ncucp" path="res://ui_elements/RadialContainer.gd" id="1_uxk1b"]
+
+[node name="RadialContainer" type="PanelContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_uxk1b")

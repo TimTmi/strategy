@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dv5kkdypiwciv"]
+
+[ext_resource type="Script" uid="uid://c3trlyceseeg0" path="res://skills/guard_stance.gd" id="1_jeu87"]
+[ext_resource type="Texture2D" uid="uid://ckcsv7gv0c1fw" path="res://sprites/vibrating-shield.png" id="2_if0me"]
+
+[node name="GuardStance" type="Node"]
+script = ExtResource("1_jeu87")
+icon = ExtResource("2_if0me")
+description = "decreases the damage taken by the user"

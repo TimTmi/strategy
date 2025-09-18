@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="LayerController" load_steps=2 format=3 uid="uid://dtpucj3k3e8pi"]
+
+[ext_resource type="Script" uid="uid://bxpwvqyqvemmw" path="res://layer_controller.gd" id="1_3ubl4"]
+
+[resource]
+script = ExtResource("1_3ubl4")
+available_sublayers = PackedStringArray("characters", "statics", "projectiles")
+metadata/_custom_type_script = "uid://bxpwvqyqvemmw"

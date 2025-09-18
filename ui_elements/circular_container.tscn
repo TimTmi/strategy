@@ -1,0 +1,51 @@
+[gd_scene load_steps=2 format=3 uid="uid://drchaa8akqit0"]
+
+[ext_resource type="Script" uid="uid://dhqrbplkq6b25" path="res://addons/KOBUGE-games.CircularContainer/CircularContainer.gd" id="1_6dq42"]
+
+[node name="CircularContainer" type="Container"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -39.1406
+offset_top = -42.1406
+offset_right = 39.1406
+offset_bottom = 42.1406
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6dq42")
+_force_expand = true
+_start_angle = 0.0
+_percent_visible = 1.0
+arrange/force_squares = false
+arrange/force_expand = true
+arrange/start_angle = 0.0
+arrange/start_empty = false
+arrange/allow_node2d = false
+animate/percent_visible = 1.0
+animate/all_at_once = false
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+text = "a"
+
+[node name="Button2" type="Button" parent="."]
+layout_mode = 2
+text = "a"
+
+[node name="Button3" type="Button" parent="."]
+layout_mode = 2
+text = "a"
+
+[node name="Button4" type="Button" parent="."]
+layout_mode = 2
+text = "a"
+
+[node name="Button5" type="Button" parent="."]
+layout_mode = 2
+text = "a"
+
+[node name="Button6" type="Button" parent="."]
+layout_mode = 2
+text = "a"

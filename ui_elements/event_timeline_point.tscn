@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://chaxqhiltu80b"]
+
+[ext_resource type="PackedScene" uid="uid://bvbvw6s3qsnk1" path="res://ui_elements/timeline_point.tscn" id="1_3mlm2"]
+[ext_resource type="Script" uid="uid://cax4d0vqaled2" path="res://ui_elements/event_timeline_point.gd" id="2_efmf1"]
+
+[node name="EventTimelinePoint" instance=ExtResource("1_3mlm2")]
+anchors_preset = -1
+anchor_left = 0.044
+anchor_top = 0.029
+anchor_right = 0.044
+anchor_bottom = 0.029
+offset_left = -7.92
+offset_top = -11.89
+offset_right = 8.08
+offset_bottom = 36.11
+script = ExtResource("2_efmf1")

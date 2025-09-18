@@ -1,0 +1,73 @@
+[gd_scene load_steps=5 format=3 uid="uid://cdcqlsde7jvsi"]
+
+[ext_resource type="Texture2D" uid="uid://ciyp53iek2dah" path="res://sprites/ball.png" id="1_m6kjt"]
+[ext_resource type="Script" uid="uid://vwsdn52ncucp" path="res://ui_elements/RadialContainer.gd" id="2_7mkdv"]
+[ext_resource type="Texture2D" uid="uid://dgyqncp6gcarv" path="res://sprites/ring.png" id="2_k2rjk"]
+[ext_resource type="PackedScene" uid="uid://d2yhvl7r1j0y2" path="res://ui_elements/skill_button.tscn" id="3_ypqgs"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_m6kjt")
+
+[node name="Panel" type="TextureRect" parent="."]
+self_modulate = Color(0, 0, 0, 0.509804)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_k2rjk")
+
+[node name="RadialContainer" type="Container" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_7mkdv")
+
+[node name="SkillButton" parent="Panel/RadialContainer" instance=ExtResource("3_ypqgs")]
+layout_mode = 2
+
+[node name="SkillButton2" parent="Panel/RadialContainer" instance=ExtResource("3_ypqgs")]
+layout_mode = 2
+
+[node name="SkillButton3" parent="Panel/RadialContainer" instance=ExtResource("3_ypqgs")]
+layout_mode = 2
+
+[node name="SkillButton4" parent="Panel/RadialContainer" instance=ExtResource("3_ypqgs")]
+layout_mode = 2
+
+[node name="SkillButton5" parent="Panel/RadialContainer" instance=ExtResource("3_ypqgs")]
+layout_mode = 2
+
+[node name="SkillButton6" parent="Panel/RadialContainer" instance=ExtResource("3_ypqgs")]
+layout_mode = 2

@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqi242dnov5wb"]
+
+[ext_resource type="Script" uid="uid://2aqmgb1n3708" path="res://skills/skip_turn.gd" id="1_6lkno"]
+[ext_resource type="Texture2D" uid="uid://b4swl0nolger1" path="res://sprites/skip.png" id="2_3rj4r"]
+
+[node name="SkipTurn" type="Node"]
+script = ExtResource("1_6lkno")
+icon = ExtResource("2_3rj4r")
+description = "user skips a number of turns"

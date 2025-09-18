@@ -1,0 +1,32 @@
+[gd_scene load_steps=7 format=3 uid="uid://d2yhvl7r1j0y2"]
+
+[ext_resource type="StyleBox" uid="uid://wsf4q1jgrgre" path="res://styleboxes/dark_gray.tres" id="2_1nhpp"]
+[ext_resource type="StyleBox" uid="uid://6cse8lxocucw" path="res://styleboxes/charcoal_gray.tres" id="2_11nlu"]
+[ext_resource type="Texture2D" uid="uid://ccs57sjfgjqvt" path="res://sprites/placeholder.png" id="2_cd2ju"]
+[ext_resource type="StyleBox" uid="uid://dd5jcqh8o58mj" path="res://styleboxes/empty.tres" id="3_oxlud"]
+[ext_resource type="Script" uid="uid://tws6fck1jlqi" path="res://ui_elements/skill_button.gd" id="5_8a00u"]
+[ext_resource type="PackedScene" uid="uid://d2uildq4uoj6j" path="res://shadow.tscn" id="6_olu8q"]
+
+[node name="SkillButton" type="Button"]
+offset_right = 16.0
+offset_bottom = 16.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 8
+theme_override_styles/focus = ExtResource("3_oxlud")
+theme_override_styles/disabled = ExtResource("3_oxlud")
+theme_override_styles/hover = ExtResource("2_11nlu")
+theme_override_styles/pressed = ExtResource("2_11nlu")
+theme_override_styles/normal = ExtResource("2_1nhpp")
+icon = ExtResource("2_cd2ju")
+script = ExtResource("5_8a00u")
+
+[node name="Shadow" parent="." instance=ExtResource("6_olu8q")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2

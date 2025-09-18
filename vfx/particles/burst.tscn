@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://bqubeop1ywngq"]
+
+[ext_resource type="Texture2D" uid="uid://dl10lbqvaev3n" path="res://curves/curve_fade_out.tres" id="1_6ei43"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yhmae"]
+lifetime_randomness = 0.6
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_max = 64.0
+gravity = Vector3(0, 0, 0)
+scale_curve = ExtResource("1_6ei43")
+alpha_curve = ExtResource("1_6ei43")
+
+[sub_resource type="GDScript" id="GDScript_o4khh"]
+script/source = "extends GPUParticles2D
+
+
+
+func set_radius(radius: int, damping := 3):
+	if process_material is ParticleProcessMaterial:
+		var velocity: float = radius / lifetime * (2 ** damping)
+		var internal_damping: float = int(damping > 0) * (velocity ** 2) * 0.5 / radius
+		
+		process_material.initial_velocity_max = velocity
+		process_material.damping_min = internal_damping * 0.9
+		process_material.damping_max = internal_damping * 1.1
+		amount = radius * 2
+"
+
+[node name="Burst" type="GPUParticles2D"]
+emitting = false
+amount = 32
+process_material = SubResource("ParticleProcessMaterial_yhmae")
+lifetime = 0.3
+one_shot = true
+explosiveness = 1.0
+script = SubResource("GDScript_o4khh")

@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://ba304h2ia8wqv"]
+
+[ext_resource type="Texture2D" uid="uid://ccs57sjfgjqvt" path="res://sprites/placeholder.png" id="1_0tgog"]
+[ext_resource type="Script" uid="uid://cy808woeu5747" path="res://ui_elements/TouchScreenButton.gd" id="2_6nds8"]
+[ext_resource type="Texture2D" uid="uid://4m2xewu7xnwf" path="res://sprites/move.png" id="3_or75g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mvax4"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gb6hx"]
+size = Vector2(16, 16)
+
+[node name="TouchScreenButton" type="TouchScreenButton"]
+scale = Vector2(12, 24)
+texture_normal = ExtResource("1_0tgog")
+shape = SubResource("RectangleShape2D_mvax4")
+script = ExtResource("2_6nds8")
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="."]
+position = Vector2(5.33333, 10.6667)
+scale = Vector2(0.333333, 0.166667)
+texture_normal = ExtResource("3_or75g")
+shape = SubResource("RectangleShape2D_gb6hx")
+
+[connection signal="released" from="." to="." method="_on_released"]
+[connection signal="released" from="TouchScreenButton" to="." method="_on_touch_screen_button_released"]

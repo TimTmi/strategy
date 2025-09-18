@@ -1,0 +1,1 @@
+class_name TriggerComponent extends Resource

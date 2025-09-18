@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://cu0ih12nqd4e8"]
+
+[ext_resource type="Script" uid="uid://d28ewi5syxn3d" path="res://ui_elements/timeline_view.gd" id="1_bg5kl"]
+
+[node name="TimelineView" type="Control"]
+clip_contents = true
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 64.0
+offset_bottom = 64.0
+mouse_filter = 2
+script = ExtResource("1_bg5kl")

@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://ci1kbvgk8363v"]
+
+[ext_resource type="PackedScene" uid="uid://cu0ih12nqd4e8" path="res://ui_elements/timeline_view.tscn" id="1_mm8m0"]
+[ext_resource type="Script" uid="uid://bwbwx7b7hofi0" path="res://ui_elements/event_timeline_view.gd" id="2_unop6"]
+
+[node name="EventTimelineView" instance=ExtResource("1_mm8m0")]
+script = ExtResource("2_unop6")
+point_offset = Vector2(0, 0)
+animated = true
+animation_duration_add_event = 0.2
+animation_duration_remove_event = 0.2
+animation_duration_scroll = 0.2
+animation_duration_zoom = 0.2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="." index="0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+follow_focus = true
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 0
+
+[node name="Control" type="Control" parent="ScrollContainer" index="0"]
+layout_mode = 2

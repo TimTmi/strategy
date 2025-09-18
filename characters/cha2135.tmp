@@ -1,0 +1,58 @@
+[gd_scene load_steps=9 format=3 uid="uid://7fkb8scs746n"]
+
+[ext_resource type="Script" path="res://characters/character.gd" id="1_ogxe7"]
+[ext_resource type="Texture2D" uid="uid://cvn8uu57ojo0r" path="res://sprites/black.png" id="2_xrnw0"]
+[ext_resource type="Script" path="res://characters/components/stat.gd" id="3_hpgw8"]
+[ext_resource type="Script" path="res://characters/components/actions/action_move.gd" id="4_mf21n"]
+[ext_resource type="Script" path="res://characters/components/actions/action_set_health.gd" id="5_wabrl"]
+[ext_resource type="Script" path="res://characters/components/actions/action_heal.gd" id="6_pg0gb"]
+[ext_resource type="Script" path="res://characters/components/actions/action_deal_damage.gd" id="7_6iteu"]
+[ext_resource type="Script" path="res://characters/components/actions/action_take_damage.gd" id="8_whksy"]
+
+[node name="Character" type="RigidBody2D"]
+gravity_scale = 0.0
+linear_damp = 13.0
+script = ExtResource("1_ogxe7")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.509804)
+scale = Vector2(2, 2)
+texture = ExtResource("2_xrnw0")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+visible = false
+
+[node name="Button" type="TouchScreenButton" parent="."]
+
+[node name="Stats" type="Node" parent="."]
+
+[node name="Health" type="Node" parent="Stats"]
+script = ExtResource("3_hpgw8")
+
+[node name="Energy" type="Node" parent="Stats"]
+script = ExtResource("3_hpgw8")
+
+[node name="Speed" type="Node" parent="Stats"]
+script = ExtResource("3_hpgw8")
+
+[node name="Actions" type="Node" parent="."]
+
+[node name="Move" type="Node" parent="Actions"]
+script = ExtResource("4_mf21n")
+
+[node name="SetHealth" type="Node" parent="Actions" node_paths=PackedStringArray("health")]
+script = ExtResource("5_wabrl")
+health = NodePath("../../Stats/Health")
+
+[node name="Heal" type="Node" parent="Actions"]
+script = ExtResource("6_pg0gb")
+
+[node name="DealDamage" type="Node" parent="Actions"]
+script = ExtResource("7_6iteu")
+
+[node name="TakeDamage" type="Node" parent="Actions"]
+script = ExtResource("8_whksy")
+
+[node name="Skills" type="Node" parent="."]

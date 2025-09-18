@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvobc6g0uodf8"]
+
+[ext_resource type="StyleBox" uid="uid://8l43v1uvroop" path="res://styleboxes/message.tres" id="1_k83k2"]
+[ext_resource type="Script" uid="uid://bi88jow0lx3p6" path="res://ui_elements/message.gd" id="2_kqi7j"]
+[ext_resource type="PackedScene" uid="uid://d2uildq4uoj6j" path="res://shadow.tscn" id="3_befmf"]
+
+[node name="Message" type="Button"]
+custom_minimum_size = Vector2(0, 32)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = ExtResource("1_k83k2")
+theme_override_styles/hover = ExtResource("1_k83k2")
+theme_override_styles/pressed = ExtResource("1_k83k2")
+theme_override_styles/disabled = ExtResource("1_k83k2")
+theme_override_styles/focus = ExtResource("1_k83k2")
+alignment = 0
+script = ExtResource("2_kqi7j")
+
+[node name="Shadow" parent="." instance=ExtResource("3_befmf")]
+layout_mode = 1
+anchors_preset = 15
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 2.0
+offset_bottom = 2.0
+
+[connection signal="focus_exited" from="." to="." method="_on_focus_exited"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]

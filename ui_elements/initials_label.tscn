@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://delph8ydveiot"]
+
+[ext_resource type="Script" uid="uid://wcx4pqelfwer" path="res://ui_elements/initials_label.gd" id="1_gy25b"]
+
+[node name="InitialsLabel" type="Label"]
+offset_right = 16.0
+offset_bottom = 8.0
+theme_override_font_sizes/font_size = 8
+text = "K"
+horizontal_alignment = 1
+script = ExtResource("1_gy25b")

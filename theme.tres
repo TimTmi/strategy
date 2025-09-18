@@ -1,0 +1,25 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://drvmja2kdy44o"]
+
+[ext_resource type="FontFile" uid="uid://dbx1bfwul4bvc" path="res://fonts/04B_03__.TTF" id="1_e1x85"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e1x85"]
+bg_color = Color(1, 1, 1, 0.4)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cjfk0"]
+bg_color = Color(1, 1, 1, 0.75)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vj6dk"]
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_110ce"]
+bg_color = Color(1, 1, 1, 0.75)
+draw_center = false
+
+[resource]
+default_font = ExtResource("1_e1x85")
+default_font_size = 8
+VScrollBar/styles/grabber = SubResource("StyleBoxFlat_e1x85")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_cjfk0")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_cjfk0")
+VScrollBar/styles/scroll = SubResource("StyleBoxFlat_vj6dk")
+VScrollBar/styles/scroll_focus = SubResource("StyleBoxFlat_110ce")

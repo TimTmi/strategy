@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://d4jre87mc2ek8"]
+
+[ext_resource type="Script" uid="uid://cfd2w4qgxdcip" path="res://objects/weapons/sword.gd" id="1_ujxka"]
+[ext_resource type="Texture2D" uid="uid://c653653tuxate" path="res://sprites/0x72_DungeonTilesetII_v1.7/weapons.png" id="1_wom7m"]
+[ext_resource type="PackedScene" uid="uid://dccrld1yt2st5" path="res://ghost_trail.tscn" id="3_cwy04"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_klkf5"]
+size = Vector2(22, 10)
+
+[node name="Sword" type="Area2D" node_paths=PackedStringArray("trail")]
+script = ExtResource("1_ujxka")
+trail = NodePath("Sprite2D/GhostTrail")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_wom7m")
+region_enabled = true
+region_rect = Rect2(160, 32, 24, 16)
+
+[node name="GhostTrail" parent="Sprite2D" instance=ExtResource("3_cwy04")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_klkf5")

@@ -1,0 +1,81 @@
+[gd_scene load_steps=11 format=3 uid="uid://7fkb8scs746n"]
+
+[ext_resource type="Script" uid="uid://eg8tev3aek4g" path="res://characters/character.gd" id="1_ogxe7"]
+[ext_resource type="Script" uid="uid://dbcnacb2ngnsw" path="res://characters/character_shadow.gd" id="2_akcxp"]
+[ext_resource type="Script" uid="uid://brx1p3vtlymbw" path="res://characters/components/stat.gd" id="3_hpgw8"]
+[ext_resource type="Script" uid="uid://k1hs2knlr28" path="res://characters/components/actions/action_move.gd" id="4_mf21n"]
+[ext_resource type="Script" uid="uid://cohoc2nh6nqvu" path="res://characters/components/actions/action_set_health.gd" id="5_wabrl"]
+[ext_resource type="Script" uid="uid://cbq2wbv58q4p7" path="res://characters/components/actions/action_heal.gd" id="6_pg0gb"]
+[ext_resource type="Script" uid="uid://btnuyovwlmvsx" path="res://characters/components/actions/action_attack.gd" id="7_inc4k"]
+[ext_resource type="Script" uid="uid://dn7r4lvjo0qp4" path="res://characters/components/actions/action_receive_attack.gd" id="8_gyqqr"]
+[ext_resource type="Script" uid="uid://d07xb71w8lad8" path="res://characters/components/actions/action_die.gd" id="8_oneji"]
+[ext_resource type="Script" uid="uid://fq4p88dq0sq1" path="res://characters/components/actions/action_take_damage.gd" id="8_whksy"]
+
+[node name="Character" type="RigidBody2D"]
+collision_layer = 0
+collision_mask = 0
+gravity_scale = 0.0
+lock_rotation = true
+linear_damp = 13.0
+script = ExtResource("1_ogxe7")
+
+[node name="Shadow" type="Node2D" parent="."]
+z_as_relative = false
+script = ExtResource("2_akcxp")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+
+[node name="Collision" type="CollisionPolygon2D" parent="."]
+
+[node name="Button" type="TouchScreenButton" parent="."]
+
+[node name="NavigationAgent" type="NavigationAgent2D" parent="."]
+path_desired_distance = 2.0
+target_desired_distance = 2.0
+avoidance_enabled = true
+
+[node name="Stats" type="Node" parent="."]
+
+[node name="Health" type="Node" parent="Stats"]
+script = ExtResource("3_hpgw8")
+
+[node name="Energy" type="Node" parent="Stats"]
+script = ExtResource("3_hpgw8")
+
+[node name="Speed" type="Node" parent="Stats"]
+script = ExtResource("3_hpgw8")
+
+[node name="Actions" type="Node" parent="."]
+
+[node name="SetHealth" type="Node" parent="Actions" node_paths=PackedStringArray("health")]
+script = ExtResource("5_wabrl")
+health = NodePath("../../Stats/Health")
+
+[node name="Move" type="Node" parent="Actions" node_paths=PackedStringArray("character", "navigation_agent")]
+script = ExtResource("4_mf21n")
+character = NodePath("../..")
+navigation_agent = NodePath("../../NavigationAgent")
+
+[node name="Heal" type="Node" parent="Actions"]
+script = ExtResource("6_pg0gb")
+
+[node name="ReceiveHealing" type="Node" parent="Actions"]
+
+[node name="Attack" type="Node" parent="Actions"]
+script = ExtResource("7_inc4k")
+
+[node name="ReceiveAttack" type="Node" parent="Actions"]
+script = ExtResource("8_gyqqr")
+
+[node name="TakeDamage" type="Node" parent="Actions" node_paths=PackedStringArray("character")]
+script = ExtResource("8_whksy")
+character = NodePath("../..")
+
+[node name="Die" type="Node" parent="Actions"]
+script = ExtResource("8_oneji")
+
+[node name="Abilities" type="Node" parent="."]
+
+[node name="Skills" type="Node" parent="."]
+
+[connection signal="out_of_health" from="Actions/SetHealth" to="." method="_on_out_of_health"]

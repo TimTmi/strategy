@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2uildq4uoj6j"]
+
+[ext_resource type="StyleBox" uid="uid://drn8b7554j4wu" path="res://styleboxes/shadow.tres" id="1_85e6p"]
+
+[node name="Shadow" type="Panel"]
+show_behind_parent = true
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+theme_override_styles/panel = ExtResource("1_85e6p")

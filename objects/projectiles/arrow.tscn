@@ -1,0 +1,61 @@
+[gd_scene load_steps=7 format=3 uid="uid://lvm8xq85omev"]
+
+[ext_resource type="Texture2D" uid="uid://c653653tuxate" path="res://sprites/0x72_DungeonTilesetII_v1.7/weapons.png" id="1_3p41l"]
+[ext_resource type="Script" uid="uid://bulpqwlulc72t" path="res://objects/projectiles/arrow.gd" id="1_8qa07"]
+[ext_resource type="PackedScene" uid="uid://dccrld1yt2st5" path="res://ghost_trail.tscn" id="2_n2ci6"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_nngql"]
+rough = true
+absorbent = true
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8qa07"]
+radius = 2.5
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8qa07"]
+size = Vector2(21, 7)
+
+[node name="Arrow" type="RigidBody2D" node_paths=PackedStringArray("back", "front", "trail", "collision_shape")]
+collision_layer = 0
+collision_mask = 0
+physics_material_override = SubResource("PhysicsMaterial_nngql")
+gravity_scale = 0.0
+lock_rotation = true
+continuous_cd = 1
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_8qa07")
+back = NodePath("Back")
+front = NodePath("Front")
+trail = NodePath("Front/GhostTrail")
+collision_shape = NodePath("CollisionShape2D")
+height_offset = 8.0
+
+[node name="Back" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(0, -8)
+texture = ExtResource("1_3p41l")
+centered = false
+offset = Vector2(-10.5, -3.5)
+region_enabled = true
+region_rect = Rect2(177, 52, 21, 7)
+
+[node name="Front" type="Sprite2D" parent="."]
+position = Vector2(0, -8)
+texture = ExtResource("1_3p41l")
+centered = false
+offset = Vector2(-10.5, -3.5)
+region_enabled = true
+region_rect = Rect2(177, 52, 21, 7)
+
+[node name="GhostTrail" parent="Front" instance=ExtResource("2_n2ci6")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_8qa07")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(0, -8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_8qa07")
+
+[connection signal="body_shape_entered" from="Area2D" to="." method="_on_body_shape_entered"]
