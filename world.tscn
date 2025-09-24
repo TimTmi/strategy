@@ -26,15 +26,15 @@
 [ext_resource type="Script" uid="uid://ddmw2iw3n8s7m" path="res://ui_elements/int_input_bar.gd" id="15_blgv3"]
 [ext_resource type="Script" uid="uid://bylx3f03xjgqf" path="res://ui_elements/skill_info_menu.gd" id="17_jjr1n"]
 [ext_resource type="Texture2D" uid="uid://b2tv2v0n6ghss" path="res://sprites/check-mark.png" id="17_wrksf"]
+[ext_resource type="PackedScene" uid="uid://djmiyg1541km8" path="res://ui_elements/autohide_component.tscn" id="18_6ah6f"]
 [ext_resource type="Texture2D" uid="uid://ccs57sjfgjqvt" path="res://sprites/placeholder.png" id="18_qktwf"]
 [ext_resource type="PackedScene" uid="uid://d2uildq4uoj6j" path="res://shadow.tscn" id="20_bh8nc"]
 [ext_resource type="StyleBox" uid="uid://ftqtkkjdbjpb" path="res://styleboxes/thunder_text.tres" id="21_gbbpv"]
-[ext_resource type="Script" uid="uid://begdognvc75uh" path="res://ui_elements/character_menu.gd" id="21_ggngw"]
 [ext_resource type="Script" uid="uid://c7wpfi8fhbe6n" path="res://ui_elements/skill_confirm.gd" id="21_vpk8x"]
 [ext_resource type="StyleBox" uid="uid://wsf4q1jgrgre" path="res://styleboxes/dark_gray.tres" id="22_86r3k"]
 [ext_resource type="Script" uid="uid://ml7yj1e1e61g" path="res://ui_elements/scroll_container.gd" id="22_gggvi"]
 [ext_resource type="Texture2D" uid="uid://c0ekvq45cexs1" path="res://sprites/cancel.png" id="24_71npb"]
-[ext_resource type="Script" uid="uid://bfr1emunnao86" path="res://ui_elements/snap_scroller.gd" id="26_6ah6f"]
+[ext_resource type="Script" uid="uid://begdognvc75uh" path="res://ui_elements/character_menu.gd" id="25_w44yn"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_4h6ng"]
 vertices = PackedVector2Array(156, 276, 36, 276, 36, 120, 156, 120)
@@ -556,12 +556,13 @@ script = ExtResource("4_t6unj")
 facade = NodePath("UIFacade")
 metadata/_edit_lock_ = true
 
-[node name="UIFacade" type="Node" parent="CanvasLayer/UI" node_paths=PackedStringArray("character_menu", "event_timeline_view", "skill_confirm", "text_output")]
+[node name="UIFacade" type="Node" parent="CanvasLayer/UI" node_paths=PackedStringArray("character_menu", "event_timeline_view", "skill_confirm", "text_output", "skill_info_menu")]
 script = ExtResource("3_w44yn")
 character_menu = NodePath("../InputOutput/CharacterMenu")
 event_timeline_view = NodePath("../EventTimelineView")
 skill_confirm = NodePath("../InputOutput/SkillConfirm")
 text_output = NodePath("../FocusCapturer")
+skill_info_menu = NodePath("../InputOutput/SkillInfo")
 
 [node name="FocusCapturer" parent="CanvasLayer/UI" instance=ExtResource("6_6nt58")]
 unique_name_in_owner = true
@@ -577,9 +578,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -90.0
-offset_top = 16.0
+offset_top = 32.0
 offset_right = 90.0
-offset_bottom = 80.0
+offset_bottom = 96.0
 grow_horizontal = 2
 point_offset = Vector2(1, 0)
 
@@ -619,6 +620,9 @@ skill_icon = NodePath("HBoxContainer/PanelContainer/Icon")
 skill_name = NodePath("HBoxContainer/Name")
 skill_description = NodePath("VBoxContainer/PanelContainer/ScrollContainer/MarginContainer/Description")
 stats_container = NodePath("VBoxContainer/PanelContainer2/ScrollContainer/MarginContainer/Stats")
+
+[node name="AutoHideComponent" parent="CanvasLayer/UI/InputOutput/SkillInfo" node_paths=PackedStringArray("target") instance=ExtResource("18_6ah6f")]
+target = NodePath("..")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UI/InputOutput/SkillInfo"]
 layout_mode = 2
@@ -748,29 +752,22 @@ caret_blink = true
 script = ExtResource("15_blgv3")
 metadata/_edit_lock_ = true
 
-[node name="CharacterMenu" type="Button" parent="CanvasLayer/UI/InputOutput" groups=["autohideNodes"]]
+[node name="CharacterMenu" type="Control" parent="CanvasLayer/UI/InputOutput" node_paths=PackedStringArray("container") groups=["autohideNodes"]]
 visible = false
 custom_minimum_size = Vector2(0, 56)
 layout_mode = 2
-theme_override_styles/normal = ExtResource("13_i6tvu")
-theme_override_styles/normal_mirrored = ExtResource("13_i6tvu")
-theme_override_styles/pressed = ExtResource("13_i6tvu")
-theme_override_styles/pressed_mirrored = ExtResource("13_i6tvu")
-theme_override_styles/hover = ExtResource("13_i6tvu")
-theme_override_styles/hover_mirrored = ExtResource("13_i6tvu")
-theme_override_styles/hover_pressed = ExtResource("13_i6tvu")
-theme_override_styles/hover_pressed_mirrored = ExtResource("13_i6tvu")
-theme_override_styles/disabled = ExtResource("13_i6tvu")
-theme_override_styles/disabled_mirrored = ExtResource("13_i6tvu")
-theme_override_styles/focus = ExtResource("13_i6tvu")
-script = ExtResource("21_ggngw")
+script = ExtResource("25_w44yn")
+container = NodePath("HBoxContainer")
+snap_threshold_percent = 0.1
+
+[node name="AutoHideComponent" parent="CanvasLayer/UI/InputOutput/CharacterMenu" node_paths=PackedStringArray("target") instance=ExtResource("18_6ah6f")]
+target = NodePath("..")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UI/InputOutput/CharacterMenu"]
 layout_mode = 0
 offset_right = 508.0
 offset_bottom = 56.0
 theme_override_constants/separation = 8
-script = ExtResource("26_6ah6f")
 
 [node name="SkillConfirm" type="HBoxContainer" parent="CanvasLayer/UI/InputOutput"]
 visible = false
@@ -906,7 +903,6 @@ available_sublayers = PackedStringArray("characters", "statics", "projectiles")
 [connection signal="focus_entered" from="CanvasLayer/UI/InputOutput/IntInput" to="CanvasLayer/UI" method="_on_input_focus_entered"]
 [connection signal="focus_exited" from="CanvasLayer/UI/InputOutput/IntInput" to="CanvasLayer/UI" method="_on_input_focus_exited"]
 [connection signal="focus_exited" from="CanvasLayer/UI/InputOutput/IntInput" to="CanvasLayer/UI/InputOutput/IntInput" method="_on_focus_exited"]
-[connection signal="character_skill_chosen" from="CanvasLayer/UI/InputOutput/CharacterMenu" to="." method="_on_character_skill_chosen"]
 [connection signal="visibility_changed" from="CanvasLayer/UI/InputOutput/CharacterMenu" to="CanvasLayer/UI/InputOutput/CharacterMenu" method="_on_visibility_changed"]
 [connection signal="pressed" from="CanvasLayer/UI/InputOutput/SkillConfirm/Cancel" to="CanvasLayer/UI/InputOutput/SkillConfirm" method="_on_cancel_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/InputOutput/SkillConfirm/Accept" to="CanvasLayer/UI/InputOutput/SkillConfirm" method="_on_accept_pressed"]

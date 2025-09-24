@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://d1bqki7w27uev" path="res://ui_elements/timeline_point_marker.gd" id="2_hodfv"]
 
 [node name="TimelinePointMarker" instance=ExtResource("1_7bfvb")]
-modulate = Color(0, 0.784314, 1, 0)
+modulate = Color(1, 1, 1, 0)
 script = ExtResource("2_hodfv")
 
 [node name="Decorations" parent="." index="2"]

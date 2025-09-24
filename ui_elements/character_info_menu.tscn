@@ -22,27 +22,28 @@ gradient = SubResource("Gradient_0wc3g")
 width = 1
 
 [node name="CharacterInfo" type="VBoxContainer"]
-custom_minimum_size = Vector2(164, 0)
 theme_override_constants/separation = 8
 alignment = 2
 script = ExtResource("1_g3voy")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="Name" type="TextureProgressBar" parent="VBoxContainer"]
+[node name="Name" type="TextureProgressBar" parent="CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(48, 8)
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_horizontal = 0
 mouse_filter = 2
 value = 100.0
-fill_mode = 6
 nine_patch_stretch = true
 texture_under = SubResource("GradientTexture1D_0vi3g")
 texture_progress = SubResource("GradientTexture1D_ps1mv")
 
-[node name="Shadow" parent="VBoxContainer/Name" instance=ExtResource("1_1yrj0")]
+[node name="Shadow" parent="CenterContainer/VBoxContainer/Name" instance=ExtResource("1_1yrj0")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -52,37 +53,34 @@ offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/Name"]
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer/Name"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -4.0
-offset_right = 20.0
-offset_bottom = 4.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/Name/CenterContainer"]
+layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 8
 theme_override_styles/normal = ExtResource("2_em2qr")
 text = "Character"
 horizontal_alignment = 1
 
-[node name="Health" type="TextureProgressBar" parent="VBoxContainer"]
-custom_minimum_size = Vector2(164, 8)
+[node name="Health" type="TextureProgressBar" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(80, 8)
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_horizontal = 0
 mouse_filter = 2
-value = 60.0
-fill_mode = 6
+max_value = 10.0
+value = 8.0
 nine_patch_stretch = true
 texture_under = SubResource("GradientTexture1D_0vi3g")
 texture_progress = SubResource("GradientTexture1D_ps1mv")
 
-[node name="Shadow" parent="VBoxContainer/Health" instance=ExtResource("1_1yrj0")]
+[node name="Shadow" parent="CenterContainer/VBoxContainer/Health" instance=ExtResource("1_1yrj0")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -92,7 +90,7 @@ offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="StatusEffects" type="HBoxContainer" parent="VBoxContainer"]
+[node name="StatusEffects" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 
 [node name="Skills" type="Panel" parent="."]
@@ -123,7 +121,3 @@ grow_vertical = 2
 mouse_filter = 2
 theme_override_constants/separation = 8
 alignment = 1
-
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-position = Vector2(82, 28)
-rect = Rect2(-8, -28, 16, 56)

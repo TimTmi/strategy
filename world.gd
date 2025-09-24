@@ -64,8 +64,9 @@ func _ready():
 	walls.tile_set.set_physics_layer_collision_layer(0, physics_layer_controller.get_layer_bitmask("environment", ["statics"]))
 	walls.tile_set.set_physics_layer_collision_mask(0, physics_layer_controller.get_layer_bitmask("environment", [], true))
 	
-	ui.facade.character_selected.connect(character_overlay.show_character_overlay, CONNECT_DEFERRED)
+	ui.facade.character_menu_character_selected.connect(character_overlay.show_character_overlay, CONNECT_DEFERRED)
 	ui.facade.character_menu_hidden.connect(character_overlay.hide)
+	ui.facade.character_menu_skill_chosen.connect(_on_character_skill_chosen)
 	
 	for team_setup: TeamSetup in teams:
 		physics_layer_controller.add_layer(team_setup.name)
@@ -177,6 +178,4 @@ func _on_character_skill_chosen(character: Character, skill: Skill) -> void:
 	if character == turn_handler.current_character:
 		use_skill(skill)
 	else:
-		var skill_info_menu := $CanvasLayer/UI/InputOutput/SkillInfo
-		ui.show_node(skill_info_menu)
-		skill_info_menu.display_skill_info(skill)
+		ui.facade.show_skill_info_menu(skill)

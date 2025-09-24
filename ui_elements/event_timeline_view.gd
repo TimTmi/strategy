@@ -22,12 +22,11 @@ var max_points: int:
 		max_points = maxi(value, 0)
 		points.resize(max_points)
 
-@onready var marker: TimelinePointMarker
+@onready var marker: TimelinePointMarker = preload("res://ui_elements/timeline_point_marker.tscn").instantiate()
 
 
 
 func _ready() -> void:
-	marker = preload("res://ui_elements/timeline_point_marker.tscn").instantiate()
 	$ScrollContainer/Control.custom_minimum_size = Vector2(sample_point.size.x * points.size(), sample_point.size.y)
 	$ScrollContainer/Control.add_child(marker)
 	if not animated:

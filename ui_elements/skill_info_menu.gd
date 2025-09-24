@@ -1,4 +1,4 @@
-extends VBoxContainer
+class_name SkillInfoMenu extends VBoxContainer
 
 @export var skill_icon: TextureRect
 @export var skill_name: Label
