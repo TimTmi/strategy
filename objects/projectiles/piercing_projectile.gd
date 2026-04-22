@@ -4,7 +4,6 @@ class_name PiercingProjectile extends Projectile
 
 @export var back: Sprite2D
 @export var front: Sprite2D
-@export var trail: GhostTrail
 
 @onready var max_length = front.region_rect.size.x
 
@@ -14,6 +13,7 @@ var pierce_position_getter: Callable
 
 
 func _ready() -> void:
+	super._ready()
 	set_physics_process(false)
 
 func _physics_process(_delta: float) -> void:
@@ -38,24 +38,26 @@ func pierce():
 		#front.region_rect.position.x += cutoff_position
 
 func start_trail() -> void:
-	$Front/GhostTrail.start()
+	if trail:
+		trail.start()
 
 func stop_trail() -> void:
-	$Front/GhostTrail.stop()
+	if trail:
+		trail.stop()
 
-func get_pierce_position_physics_body(body: PhysicsBody2D) -> float:
-	return body.global_position.y - height_offset
-
-func get_pierce_position_tilemap_cell(body: TileMapLayer, body_rid: RID) -> float:
-	var tile_coords = body.get_coords_for_body_rid(body_rid)
-	return body.map_to_local(tile_coords).y + body.tile_set.tile_size.y / 2  - height_offset
-
-func _on_body_shape_entered(body_rid: RID, body: Node2D, _body_shape_index: int, _local_shape_index: int) -> void:
-	if body is PhysicsBody2D:
-		pierce_position_getter = get_pierce_position_physics_body.bind(body)
-	elif body is TileMapLayer:
-		pierce_position_getter = get_pierce_position_tilemap_cell.bind(body, body_rid)
-	else:
-		return
-	
-	set_physics_process(true)
+#func get_pierce_position_physics_body(body: PhysicsBody2D) -> float:
+	#return body.global_position.y - height_offset
+#
+#func get_pierce_position_tilemap_cell(body: TileMapLayer, body_rid: RID) -> float:
+	#var tile_coords: Vector2i = body.get_coords_for_body_rid(body_rid)
+	#return body.map_to_local(tile_coords).y + body.tile_set.tile_size.y * 0.5  - height_offset
+#
+#func _on_body_shape_entered(body_rid: RID, body: Node, _body_shape_index: int, _local_shape_index: int) -> void:
+	#if body is PhysicsBody2D:
+		#pierce_position_getter = get_pierce_position_physics_body.bind(body)
+	#elif body is TileMapLayer:
+		#pierce_position_getter = get_pierce_position_tilemap_cell.bind(body, body_rid)
+	#else:
+		#return
+	#
+	#set_physics_process(true)

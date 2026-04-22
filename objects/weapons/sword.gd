@@ -7,4 +7,4 @@ class_name Sword extends Area2D
 
 
 func _ready() -> void:
-	z_index = RenderLayers.WEAPONS
+	z_index = RenderLayers.WORLD

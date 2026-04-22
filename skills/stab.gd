@@ -9,7 +9,7 @@ extends Skill
 @onready var knockback: int = stats.get("knockback", 0)
 
 #var area: Area2D
-@onready var sword: Sword = preload("res://objects/weapons/sword.tscn").instantiate()
+@onready var sword: Hitbox = preload("res://hitboxes/sword.tscn").instantiate()
 
 
 
@@ -39,8 +39,10 @@ func _use_extended() -> void:
 	sword.modulate.a = 0
 	sword.position = Vector2.ZERO
 	sword.global_rotation = angle
-	sword.collision_layer = physics_layer_controller.get_layer_bitmask(user.team, ["statics"])
-	sword.collision_mask = physics_layer_controller.get_layer_bitmask(user.team, [], true)
+	sword.set_physics_layer(
+		physics_layer_controller.get_layer_bitmask(user.team, ["statics"]),
+		physics_layer_controller.get_layer_bitmask(user.team, [], true)
+	)
 	sword.show()
 	
 	var tween: Tween = create_tween()

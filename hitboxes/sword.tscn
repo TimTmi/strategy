@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://gipwkojquwb6"]
+
+[ext_resource type="PackedScene" uid="uid://bj2r0v61edik1" path="res://hitboxes/hitbox.tscn" id="1_5jk2n"]
+[ext_resource type="Texture2D" uid="uid://c653653tuxate" path="res://sprites/0x72_DungeonTilesetII_v1.7/weapons.png" id="2_r8lhd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_re5sp"]
+size = Vector2(21, 10)
+
+[node name="Sword" instance=ExtResource("1_5jk2n")]
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_r8lhd")
+region_enabled = true
+region_rect = Rect2(161, 35, 21, 10)
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("RectangleShape2D_re5sp")

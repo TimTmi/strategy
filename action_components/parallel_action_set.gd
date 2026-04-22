@@ -6,6 +6,6 @@ class_name ParallelActionSet extends ActionComponent
 
 
 
-func apply(context: ActionContext) -> void:
+func apply(context: Dictionary) -> void:
 	for action in actions:
 		action.apply(context)

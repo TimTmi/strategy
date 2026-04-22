@@ -1,12 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://pxm2fypburi5"]
+[gd_scene format=3 uid="uid://pxm2fypburi5"]
 
 [ext_resource type="Script" uid="uid://dij4bxloykwne" path="res://skills/quick_shot.gd" id="1_vjlmf"]
 [ext_resource type="Texture2D" uid="uid://dpbyh7wig75aq" path="res://sprites/arrowhead.png" id="2_7kkt6"]
 [ext_resource type="Resource" uid="uid://dtpucj3k3e8pi" path="res://physics_layer_controller.tres" id="2_eixq2"]
+[ext_resource type="Script" uid="uid://bhnoovwprgw76" path="res://projectile_behavior_config/projectile_behavior_config.gd" id="3_3kqq2"]
+[ext_resource type="PackedScene" uid="uid://lvm8xq85omev" path="res://objects/projectiles/arrow.tscn" id="4_20uvd"]
+[ext_resource type="Script" uid="uid://b481odrolmdnt" path="res://projectile_setup.gd" id="5_737j4"]
 
-[node name="QuickShot" type="Node"]
+[sub_resource type="Resource" id="Resource_737j4"]
+script = ExtResource("5_737j4")
+projectile_scene = ExtResource("4_20uvd")
+metadata/_custom_type_script = "uid://b481odrolmdnt"
+
+[node name="QuickShot" type="Node" unique_id=1815781484]
 script = ExtResource("1_vjlmf")
 physics_layer_controller = ExtResource("2_eixq2")
+projectile_setup = SubResource("Resource_737j4")
 icon = ExtResource("2_7kkt6")
 description = "user shoots a quick arrow at the target angle"
 stats = {

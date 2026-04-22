@@ -1,4 +1,4 @@
-class_name TriggeredActionSet extends Resource
+class_name TriggeredActionSet extends Node
 
 
 

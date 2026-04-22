@@ -4,15 +4,16 @@ class_name Character extends RigidBody2D
 
 @export var size: Vector2i = Vector2i(16, 8)
 
-@onready var health: Stat = $Stats/Health
-@onready var energy: Stat = $Stats/Energy
-@onready var speed: Stat = $Stats/Speed
-@onready var button: TouchScreenButton = $Button
-@onready var abilities: Node = $Abilities
-@onready var skills: Node = $Skills
-@onready var sprite: AnimatedSprite2D = $Sprite
-@onready var navigation_agent: NavigationAgent2D = $NavigationAgent
-@onready var shadow: Node2D = $Shadow
+@export var health: Stat
+@export var energy: Stat
+@export var speed: Stat
+@export var button: TouchScreenButton
+@export var abilities: Node
+@export var skills: Node
+@export var sprite: AnimatedSprite2D
+@export var collision: CollisionPolygon2D
+@export var navigation_agent: NavigationAgent2D
+@export var shadow: Node2D
 
 var world: Node2D
 var team: StringName
@@ -48,11 +49,11 @@ func _ready() -> void:
 	#if sprite.sprite_frames.has_animation("idle"):
 		#sprite.play("idle")
 	
-	shadow.z_index = RenderLayers.SHADOWS
-	shadow.draw_shadow(size)
-	$Collision.set_polygon(shadow.points)
+	var collision_ellipse_points: PackedVector2Array = EllipseGenerator.get_ellipse_points(size)
+	shadow.draw_shadow(collision_ellipse_points)
+	collision.set_polygon(collision_ellipse_points)
 	
-	for skill: Skill in $Skills.get_children():
+	for skill: Skill in skills.get_children():
 		skill.user = self
 		skill.spawner = spawner
 		skill.used.connect(_on_skill_used)
@@ -63,9 +64,9 @@ func _ready_extended() -> void:
 	pass
 
 func get_skills() -> Array[Node]:
-	return $Skills.get_children()
+	return skills.get_children()
 
-func recolor(new_color: Color) -> void:
+func recolor(_new_color: Color) -> void:
 	pass
 
 func flip_sprite(flip: bool) -> void:
@@ -75,7 +76,6 @@ func flip_sprite(flip: bool) -> void:
 			i.flip_h = flip
 
 func play_animation(animation: StringName) -> void:
-	var sprite: AnimatedSprite2D = $Sprite
 	if not sprite.sprite_frames.has_animation(animation):
 		return
 	sprite.play(animation)

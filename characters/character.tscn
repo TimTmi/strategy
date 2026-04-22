@@ -11,13 +11,24 @@
 [ext_resource type="Script" uid="uid://d07xb71w8lad8" path="res://characters/components/actions/action_die.gd" id="8_oneji"]
 [ext_resource type="Script" uid="uid://fq4p88dq0sq1" path="res://characters/components/actions/action_take_damage.gd" id="8_whksy"]
 
-[node name="Character" type="RigidBody2D"]
+[node name="Character" type="RigidBody2D" node_paths=PackedStringArray("health", "energy", "speed", "button", "abilities", "skills", "sprite", "collision", "navigation_agent", "shadow")]
 collision_layer = 0
 collision_mask = 0
+mass = 60.0
 gravity_scale = 0.0
 lock_rotation = true
 linear_damp = 13.0
 script = ExtResource("1_ogxe7")
+health = NodePath("Stats/Health")
+energy = NodePath("Stats/Energy")
+speed = NodePath("Stats/Speed")
+button = NodePath("Button")
+abilities = NodePath("Abilities")
+skills = NodePath("Skills")
+sprite = NodePath("Sprite")
+collision = NodePath("Collision")
+navigation_agent = NodePath("NavigationAgent")
+shadow = NodePath("Shadow")
 
 [node name="Shadow" type="Node2D" parent="."]
 z_as_relative = false

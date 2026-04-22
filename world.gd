@@ -2,11 +2,12 @@ extends Node2D
 
 
 
+@export_group("References")
 @export var physics_layer_controller: LayerController
 @export var character_overlay: CharacterOverlay
 @export var map: Map
-@export var floor: TileMapLayer
-@export var walls: TileMapLayer
+@export var floor_layer: TileMapLayer
+@export var walls_layer: TileMapLayer
 @export var characters_container: Node2D
 @export var trails_container: Node2D
 @export var projectiles_container: Node2D
@@ -31,23 +32,23 @@ var teams: Array = [
 
 
 signal setup_finished
-signal turn_started
+#signal turn_started
 signal turn_ended
-signal turn_changed
-signal game_ended
+#signal turn_changed
+#signal game_ended
 
 
 
 func _ready():
-	#Engine.time_scale = 0.1
+	Engine.time_scale = 0.2
 	
 	physics_layer_controller.add_layer("environment")
 	
-	floor.z_index = RenderLayers.FLOOR
-	walls.z_index = RenderLayers.WALLS
-	characters_container.z_index = RenderLayers.CHARACTERS
-	trails_container.z_index = RenderLayers.TRAILS
-	projectiles_container.z_index = RenderLayers.PROJECTILES
+	floor_layer.z_index = RenderLayers.FLOOR
+	walls_layer.z_index = RenderLayers.WORLD
+	characters_container.z_index = RenderLayers.WORLD
+	trails_container.z_index = RenderLayers.WORLD
+	projectiles_container.z_index = RenderLayers.WORLD
 	character_overlay.z_index = RenderLayers.UI
 	skill_input_handler.z_index = RenderLayers.UI
 	skill_input_preview.z_index = RenderLayers.UI
@@ -61,8 +62,8 @@ func _ready():
 	
 	spawner.character_spawned.connect(_on_character_spawned)
 	
-	walls.tile_set.set_physics_layer_collision_layer(0, physics_layer_controller.get_layer_bitmask("environment", ["statics"]))
-	walls.tile_set.set_physics_layer_collision_mask(0, physics_layer_controller.get_layer_bitmask("environment", [], true))
+	walls_layer.tile_set.set_physics_layer_collision_layer(0, physics_layer_controller.get_layer_bitmask("environment", ["statics"]))
+	walls_layer.tile_set.set_physics_layer_collision_mask(0, physics_layer_controller.get_layer_bitmask("environment", [], true))
 	
 	ui.facade.character_menu_character_selected.connect(character_overlay.show_character_overlay, CONNECT_DEFERRED)
 	ui.facade.character_menu_hidden.connect(character_overlay.hide)

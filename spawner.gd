@@ -1,7 +1,7 @@
 class_name Spawner extends Node
 
 
-
+@export var foo: Callable
 var characters_container: Node2D
 var projectiles_container: Node2D
 var trails_container: Node2D
@@ -15,6 +15,7 @@ signal trail_spawned(trail: Node2D)
 
 
 func spawn_character(character: Character) -> void:
+	character.spawner = self
 	characters_container.add_child(character, true)
 	character_spawned.emit(character)
 

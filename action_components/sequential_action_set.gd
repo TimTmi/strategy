@@ -6,6 +6,6 @@ class_name SequentialActionSet extends ActionComponent
 
 
 
-func apply(context: ActionContext) -> void:
+func apply(context: Dictionary) -> void:
 	for action in actions:
 		await action.apply(context)

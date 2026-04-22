@@ -1,6 +1,6 @@
-class_name ActionComponent extends Resource
+class_name ActionComponent extends Node
 
 
 
-func apply(context: ActionContext) -> void:
+func apply(context: Dictionary) -> void:
 	pass

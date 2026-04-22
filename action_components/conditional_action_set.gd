@@ -2,14 +2,19 @@ class_name ConditionalActionSet extends ActionComponent
 
 
 
-@export var conditions: Array[ConditionComponent]
-@export var action: ActionComponent
+enum ExecutionMode { SEQUENTIAL, PARALLEL }
+
+@export var execution_mode: ExecutionMode = ExecutionMode.SEQUENTIAL
 
 
 
-func apply(context: ActionContext) -> void:
-	for condition in conditions:
-		if not condition.is_satisfied(context):
-			return
-	
-	action.apply(context)
+func apply(context: Dictionary) -> void:
+	for condition: Node in get_children():
+		if condition is Condition and (condition as Condition).is_satisfied(context):
+			for action: Node in condition.get_children():
+				if action is ActionComponent:
+					match execution_mode:
+						ExecutionMode.SEQUENTIAL:
+							await (action as ActionComponent).apply(context)
+						ExecutionMode.PARALLEL:
+							(action as ActionComponent).apply(context)

@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://bl4nqc1yaxvlc"]
+
+[ext_resource type="Texture2D" uid="uid://h6x1exq1fo26" path="res://icon.svg" id="1_c1bky"]
+[ext_resource type="Script" uid="uid://dn3bk7vxvqgjk" path="res://objects/projectiles/projectile.gd" id="1_u8jur"]
+[ext_resource type="Script" uid="uid://dbcnacb2ngnsw" path="res://characters/character_shadow.gd" id="2_5u1mr"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5u1mr"]
+rough = true
+absorbent = true
+
+[node name="Projectile" type="RigidBody2D" node_paths=PackedStringArray("sprite", "shadow", "collision_shape", "rotatables")]
+physics_material_override = SubResource("PhysicsMaterial_5u1mr")
+gravity_scale = 0.0
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_u8jur")
+size = Vector2(8, 4)
+sprite = NodePath("Sprite2D")
+shadow = NodePath("Shadow")
+collision_shape = NodePath("CollisionPolygon2D")
+rotatables = [NodePath("Sprite2D")]
+
+[node name="Shadow" type="Node2D" parent="."]
+z_as_relative = false
+script = ExtResource("2_5u1mr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_c1bky")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]

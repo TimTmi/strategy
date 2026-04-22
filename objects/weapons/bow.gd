@@ -1,4 +1,4 @@
-extends Node2D
+class_name Bow extends Node2D
 
 
 
